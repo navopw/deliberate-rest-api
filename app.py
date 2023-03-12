@@ -11,9 +11,6 @@ RESULT_FOLDER = "result"
 repo_id = "XpucT/Deliberate"
 pipe = StableDiffusionPipeline.from_pretrained(repo_id)
 
-# Upscale pipeline
-upscale_pipe = StableDiffusionUpscalePipeline.from_pretrained("stabilityai/stable-diffusion-x4-upscaler")
-
 def get_best_device():
     if torch.cuda.is_available():
         return "cuda"
@@ -97,19 +94,14 @@ def generate():
     # Generate Image
     image = pipe(
         prompt=prompt,
-        width=512,
-        height=512,
+        width=800,
+        height=800,
         num_inference_steps=30
-    ).images[0]
-    
-    # Upscale
-    upscaled_image = upscale_pipe(
-       prompt=prompt, image=image
     ).images[0]
     
     # Save image to path {RESULT_FOLDER}/{randomId}.png
     image_path = f"{RESULT_FOLDER}/{randomId}.png"
-    upscaled_image.save(image_path)
+    image.save(image_path)
 
 if __name__ == '__main__':
     # Env
@@ -122,7 +114,6 @@ if __name__ == '__main__':
 
     # Diffusion
     pipe.to(get_best_device())
-    pipe.enable_attention_slicing()
 
     # Create result folder if not exists
     if not os.path.exists(RESULT_FOLDER):
