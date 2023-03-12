@@ -92,9 +92,9 @@ def generate():
     # Generate Image
     image = pipe(
         prompt=prompt,
-        width=512,
-        height=512,
-        num_inference_steps=22
+        width=1024,
+        height=1024,
+        num_inference_steps=25
     ).images[0]
     
     # Save image to path {RESULT_FOLDER}/{randomId}.png
