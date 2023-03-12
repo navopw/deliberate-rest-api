@@ -52,9 +52,11 @@ def generate_prompt():
     # Generate prompt
     completion = send_message([
         {"role": "user", "content": """
-Give me a stable diffusion prompt. Think of the theme by yourself.
+Give me a stable diffusion prompt. Think of the theme by yourself. Theme examples: interior, landscape, portrait, animal, food.
 
-Examples:
+Maximum length 150 characters. Comma seperated keywords. Also add 8k, high quality, cinematic, hyperrealistic.
+
+Example prompts:
 - strong warrior princess| centered| key visual| intricate| highly detailed| breathtaking beauty| precise lineart| vibrant| comprehensive cinematic| Carne Griffiths| Conrad Roset
 
 - complex 3d render ultra detailed of a beautiful porcelain profile woman android face, cyborg, robotic parts, 150 mm, beautiful studio soft light, rim light, vibrant details, luxurious cyberpunk, lace, hyperrealistic, anatomical, facial muscles, cable electric wires, microchip, elegant, beautiful background, octane render, H. R. Giger style, 8k
@@ -63,7 +65,6 @@ Examples:
 
 - aerial view of a giant fish tank shaped like a tower in the middle of new york city, 8k octane render, photorealistic
 
-Maximum length 150 characters. Comma seperated keywords.
          """},
     ])
     
