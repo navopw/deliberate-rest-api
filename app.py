@@ -4,6 +4,7 @@ import openai
 import uuid
 import os
 from dotenv import load_dotenv
+import multiprocessing
 
 RESULT_FOLDER = "result"
 
@@ -56,7 +57,7 @@ Give me a stable diffusion prompt. Think of the theme by yourself. Theme example
 
 Maximum length 150 characters. Comma seperated keywords. Also add 8k, high quality, cinematic, hyperrealistic.
 
-Example prompts:
+Orientate yourself on the following examples:
 - strong warrior princess| centered| key visual| intricate| highly detailed| breathtaking beauty| precise lineart| vibrant| comprehensive cinematic| Carne Griffiths| Conrad Roset
 
 - complex 3d render ultra detailed of a beautiful porcelain profile woman android face, cyborg, robotic parts, 150 mm, beautiful studio soft light, rim light, vibrant details, luxurious cyberpunk, lace, hyperrealistic, anatomical, facial muscles, cable electric wires, microchip, elegant, beautiful background, octane render, H. R. Giger style, 8k
@@ -64,7 +65,6 @@ Example prompts:
 - goddess close-up portrait skull with mohawk, ram skull, skeleton, thorax, x-ray, backbone, jellyfish phoenix head, nautilus, orchid, skull, betta fish, bioluminiscent creatures, intricate artwork by Tooth Wu and wlop and beeple. octane render, trending on artstation, greg rutkowski very coherent symmetrical artwork. cinematic, hyper realism, high detail, octane render, 8k
 
 - aerial view of a giant fish tank shaped like a tower in the middle of new york city, 8k octane render, photorealistic
-
          """},
     ])
     
@@ -120,5 +120,11 @@ if __name__ == '__main__':
         os.makedirs(RESULT_FOLDER)
 
     # Run generation
-    while True:
-        generate()
+    processes = []
+    for i in range(3):
+        p = multiprocessing.Process(target=generate)
+        p.start()
+        processes.append(p)
+
+    for p in processes:
+        p.join()
