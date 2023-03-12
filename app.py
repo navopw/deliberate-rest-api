@@ -1,15 +1,18 @@
 import torch
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionUpscalePipeline
 import openai
 import uuid
 import os
 from dotenv import load_dotenv
-import multiprocessing
 
 RESULT_FOLDER = "result"
 
+# Deliberate Pipeline
 repo_id = "XpucT/Deliberate"
 pipe = StableDiffusionPipeline.from_pretrained(repo_id)
+
+# Upscale pipeline
+upscale_pipe = StableDiffusionUpscalePipeline.from_pretrained("stabilityai/stable-diffusion-x4-upscaler")
 
 def get_best_device():
     if torch.cuda.is_available():
@@ -99,9 +102,14 @@ def generate():
         num_inference_steps=20
     ).images[0]
     
+    # Upscale
+    upscaled_image = upscale_pipe(
+       prompt=prompt, image=image
+    ).images[0]
+    
     # Save image to path {RESULT_FOLDER}/{randomId}.png
     image_path = f"{RESULT_FOLDER}/{randomId}.png"
-    image.save(image_path)
+    upscaled_image.save(image_path)
 
 if __name__ == '__main__':
     # Env
