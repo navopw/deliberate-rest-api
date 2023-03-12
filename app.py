@@ -97,9 +97,9 @@ def generate():
     # Generate Image
     image = pipe(
         prompt=prompt,
-        width=1024,
-        height=1024,
-        num_inference_steps=20
+        width=512,
+        height=512,
+        num_inference_steps=30
     ).images[0]
     
     # Upscale
