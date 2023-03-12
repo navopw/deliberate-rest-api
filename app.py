@@ -10,6 +10,7 @@ pipe = StableDiffusionPipeline.from_pretrained(
 )
 
 pipe.enable_attention_slicing()
+pipe.to("cuda" if torch.cuda.is_available() else "cpu")
 
 @app.route('/generate', methods=['POST'])
 def generate_image():
