@@ -95,7 +95,7 @@ def generate():
         prompt=prompt,
         width=1024,
         height=1024,
-        num_inference_steps=25
+        num_inference_steps=20
     ).images[0]
     
     # Save image to path {RESULT_FOLDER}/{randomId}.png
@@ -120,11 +120,5 @@ if __name__ == '__main__':
         os.makedirs(RESULT_FOLDER)
 
     # Run generation
-    processes = []
-    for i in range(3):
-        p = multiprocessing.Process(target=generate)
-        p.start()
-        processes.append(p)
-
-    for p in processes:
-        p.join()
+    while True:
+        generate()
