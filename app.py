@@ -53,18 +53,19 @@ def generate_prompt():
     # Generate prompt
     completion = send_message([
         {"role": "user", "content": """
-Give me a stable diffusion prompt. Think of the theme by yourself. Theme examples: interior, landscape, portrait, animal, food.
+Stable Diffusion is an AI art generation model similar to DALLE-2.
+Below is a list of prompts that can be used to generate images with Stable Diffusion:
 
-Maximum length 150 characters. Comma seperated keywords. Also add 8k, high quality, cinematic, hyperrealistic.
+- a cute kitten made out of metal, (cyborg:1.1), ([tail | detailed wire]:1.3), (intricate details), hdr, (intricate details, hyperdetailed:1.2), cinematic shot, vignette, centered
+- medical mask, victorian era, cinematography, intricately detailed, crafted, meticulous, magnificent, maximum details, extremely hyper aesthetic
+- a girl, wearing a tie, cupcake in her hands, school, indoors, (soothing tones:1.25), (hdr:1.25), (artstation:1.2), dramatic, (intricate details:1.14), (hyperrealistic 3d render:1.16), (filmic:0.55), (rutkowski:1.1), (faded:1.3)
+- A ultra detailed portrait of a sailor moon 1girl smiling, color digital painting, highly detailed, digital painting, artstation, intricate, sharp focus, warm lighting, attractive, high quality, masterpiece, award-winning art, art by Yoshitaka Amano, and Brian Froud, trending on artstation, trending on deviantart, Anime Key Visual, anime coloring, (anime screencap:1.2),(Graphic Novel),(style of anime:1.3), trending on CGSociety
+- (extremely detailed CG unity 8k wallpaper), movie poster of elite (Beskar Steel pattern:1.6) intricate armor mandalorian in a battle stance, professional majestic oil painting by Ed Blinkey, Atey Ghailan, Studio Ghibli, by Jeremy Mann, Greg Manchess, Antonio Moro, trending on ArtStation, trending on CGSociety, Intricate, High Detail, Sharp focus, dramatic, by midjourney and greg rutkowski, realism, beautiful and detailed lighting, shadows, by Jeremy Lipking, by Antonio J. Manzanedo, by Frederic Remington, by HW Hansen, by Charles Marion Russell, by William Herbert Dunton
+- Giant monstrous aliens, volumetric lighting, concept art, smooth, sharp focus, 8k octane beautifully detailed render, post-processing, extremely hyperdetailed, intricate, epic composition, grim yet sparkling atmosphere, cinematic lighting + masterpiece, trending on artstation, very detailed, vibrant colors
+- masterpiece,best quality,official art,extremely detailed CG unity 8k wallpaper,illustration, light,car, bright, motor vehicle, ground vehicle, sports car, vehicle focus, road, need for speed, moving, wet, (night, midnight:1.5), cyberpunk, tokyo,neon lights,drift, <lora:MX5NA-000008:0.9>
+- cyborg woman| with a visible detailed brain| muscles cable wires| biopunk| cybernetic| cyberpunk| white marble bust| canon m50| 100mm| sharp focus| smooth| hyperrealism| highly detailed| intricate details| carved by michelangelo
 
-Orientate yourself on the following examples:
-- strong warrior princess| centered| key visual| intricate| highly detailed| breathtaking beauty| precise lineart| vibrant| comprehensive cinematic| Carne Griffiths| Conrad Roset
-
-- complex 3d render ultra detailed of a beautiful porcelain profile woman android face, cyborg, robotic parts, 150 mm, beautiful studio soft light, rim light, vibrant details, luxurious cyberpunk, lace, hyperrealistic, anatomical, facial muscles, cable electric wires, microchip, elegant, beautiful background, octane render, H. R. Giger style, 8k
-
-- goddess close-up portrait skull with mohawk, ram skull, skeleton, thorax, x-ray, backbone, jellyfish phoenix head, nautilus, orchid, skull, betta fish, bioluminiscent creatures, intricate artwork by Tooth Wu and wlop and beeple. octane render, trending on artstation, greg rutkowski very coherent symmetrical artwork. cinematic, hyper realism, high detail, octane render, 8k
-
-- aerial view of a giant fish tank shaped like a tower in the middle of new york city, 8k octane render, photorealistic
+I want you to write me a a detailed prompt. Follow the structure of the example prompts. This means a very short description of the scene as tags, followed by modifiers divided by commas to alter the mood, style, lighting, and more. Also append hdr, 8k, high detail, high quality. Dont surround with parenthesis.
          """},
     ])
     
